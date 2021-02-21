@@ -1,5 +1,4 @@
 use crate::game::{PLAYER_SPEED, MONSTER_SPEED, SHOT_SPEED, BLOCK_SIZE, BAG_SPEED};
-//use piston_window::{G2dTexture, Texture};
 use crate::immovable_objects::*;
 use std::time::{Instant};
 
@@ -112,16 +111,6 @@ pub fn bag_or_shot_crashed(obj: Movable, walls: Vec<Vec<Immovable>>) -> bool {
             && obj.x % (BLOCK_SIZE as f64) < 1.0 {
                 return true;
             }
-            /*if obj_X > 0 {
-                return overlaps(obj, Movable{
-                    type_object: MovableType::Converted,
-                    x: walls[obj_X - 1][obj_Y].x,
-                    y: walls[obj_X - 1][obj_Y].y,
-                    dir: Direction::None,
-                    activation_time: Instant::now(),
-                    previous_dir: Direction::None,
-                });
-            }*/
             return false;
         },
         Direction::Down => {
@@ -154,16 +143,6 @@ pub fn bag_or_shot_crashed(obj: Movable, walls: Vec<Vec<Immovable>>) -> bool {
             && obj.y % (BLOCK_SIZE as f64) < 1.0 {
                 return true;
             }
-            /*if obj_Y > 0 {
-                return overlaps(obj, Movable{
-                    type_object: MovableType::Converted,
-                    x: walls[obj_X][obj_Y - 1].x,
-                    y: walls[obj_X][obj_Y - 1].y,
-                    dir: Direction::None,
-                    activation_time: Instant::now(),
-                    previous_dir: Direction::None,
-                });
-            }*/
             return false;
         },
         Direction::Right => {
@@ -187,31 +166,5 @@ pub fn bag_or_shot_crashed(obj: Movable, walls: Vec<Vec<Immovable>>) -> bool {
         },
         _ => {}
     }
-/*
-    if obj_X >= walls.len() - 1 {
-        return true;
-    }
-
-    if walls[obj_X + 1][obj_Y].type_object == ImmovableType::Background {
-        return false;
-    }
-
-    let obj_left_x = obj.x;
-    let obj_left_y = obj.y;
-    let obj_right_x = obj.x + (BLOCK_SIZE as f64);
-    let obj_right_y = obj.y + (BLOCK_SIZE as f64);
-    
-    let wall_left_x = walls[obj_X + 1][obj_Y].x;
-    let wall_left_y = walls[obj_X + 1][obj_Y].y;
-    let wall_right_x = walls[obj_X + 1][obj_Y].x + (BLOCK_SIZE as f64);
-    let wall_right_y = walls[obj_X + 1][obj_Y].y + (BLOCK_SIZE as f64);
-
-    if obj_left_x < wall_right_x 
-    && obj_right_x > wall_left_x
-    && obj_left_y < wall_right_y
-    && obj_right_y > wall_left_y {
-        return true;
-    }
-*/
     false
 }
